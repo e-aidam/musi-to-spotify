@@ -6,30 +6,6 @@ import json
 import csv
 from urllib.parse import urlencode
 
-"""
-# creates playlist array from csv
-
-def csv_to_array(file_path):
-    data_array = []
-    with open(file_path, 'r', encoding='utf-8') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for row in csv_reader:
-            data_array.append(row)
-    return data_array
-
-csv_file_path = 'simmering_data.csv'
-csv_data_array = csv_to_array(csv_file_path)
-
-# Extracting track names and artists separately
-track_names = [row[0] for row in csv_data_array[1:]]
-artists = [row[1] for row in csv_data_array[1:]]
-
-# Combining track names and artists into a list of dictionaries
-source_playlist = [{"track_name": track_name, "artist": artist} for track_name, artist in zip(track_names, artists)]
-print(source_playlist)
-playlist_name  = "simmering"
-"""
-
 # Spotify API endpoints
 SPOTIFY_API_BASE_URL = "https://api.spotify.com/v1"
 SPOTIFY_CREATE_PLAYLIST_URL = SPOTIFY_API_BASE_URL + "/users/{user_id}/playlists"
@@ -112,9 +88,6 @@ def create_spotify_playlist(access_token, user_id, playlist_name):
         return response.json()["id"]
     return None
 
-# consider using different configurations for the query for improving accuracy
-# artist can be specificied but tracks will not be found more often
-# check https://developer.spotify.com/documentation/web-api/reference/search for more specifics
 def search_spotify_track(access_token, track_name, artist):
     # search for a track on Spotify
     params = {
