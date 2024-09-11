@@ -10,9 +10,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # input musi url
 url = input('Enter Musi playlist url')
-""" check for correct format, 
-https://feelthemusi.com/playlist/######, 
-5 lettter/number identifier"""
  
 # instantiate options 
 options = webdriver.ChromeOptions() 
@@ -36,27 +33,6 @@ try:
     video_titles = driver.find_elements(By.CLASS_NAME, 'video_title')
     video_artists = driver.find_elements(By.CLASS_NAME, 'video_artist')
     playlist_title = driver.find_element(By.ID, 'playlist_header_title')
-        
-    """
-    Also create if statement to remove '- Topic' from video_artist
-    for video_artist in video
-    if video_artist contains '- Topic':
-        video_artist = video_artist without Topic tag
-        
-    Remove Audio, Lyrics, Official Audio, Official Video, and Vizualizer from video_title, often in () or []
-
-        Try to add ft./feat./feautring, to video_artist ()
-
-    Add if statement to get song info from title alone when '-' is present (check for long hash as well)
-    if video_title contains '-':
-        1st half = video_artist
-        2nd half = video_title
-        
-    for video_title in video_titles:
-        if video_title
-            
- 
-    """
     
     # create variable for the playlist name
     playlist_name = playlist_title.text
@@ -79,8 +55,6 @@ finally:
     # close the WebDriver
     driver.quit()
 
-print(source_playlist)
-"""
 # save playlist as a csv file
 
 # importing modules for csv packaging
@@ -111,4 +85,3 @@ csv_filename = f"{pythonified_playlist_name}data.csv"
 df.to_csv(csv_filename, index=False)
 
 print(f"CSV file '{csv_filename}' has been created successfully.")
-"""
